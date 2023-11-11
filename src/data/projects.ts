@@ -1,26 +1,40 @@
 export type Project = {
   title: string;
-  techs: string[];
+  tech: {
+    name: string;
+    image: string;
+  };
   link: string;
-  isComingSoon?: boolean;
+  description: string;
 };
 
 const projects: Project[] = [
   {
-    title: "Dictionary App",
-    techs: ["ReactJS (NextJS)", "react-query", "zod"],
-    link: "https://github.com/MaeWolff/dictionary-app",
+    title: "Scryer",
+    tech: {
+      name: "Python",
+      image: "/python-3.svg"
+    },
+    link: "https://github.com/neutrino2211/scryer",
+    description: "Scryer is a network-based intrusion detection system (IDS) designed to protect your network from external threats."
   },
   {
-    title: "Portfolio / Lina BLIDI",
-    techs: ["ReactJS (NextJS)", "TypeScript"],
-    link: "https://www.linablidi.fr/",
+    title: "Gecko",
+    tech: {
+      name: "Golang",
+      image: "/golang.svg"
+    },
+    link: "https://github.com/neutrino2211/gecko",
+    description: "A programming language designed for writing low level and highly performant applications using a beginner friendly syntax.",
   },
   {
-    title: "Portfolio / Template",
-    techs: ["Astro"],
-    link: "/",
-    isComingSoon: true,
+    title: "NomadDB",
+    tech: {
+      name: "Golang",
+      image: "/golang.svg"
+    },
+    link: "https://github.com/neutrino2211/NomadDB",
+    description: "A decentralised P2P database format designed with an emphasis on ownership and anonymity."
   },
 ];
 

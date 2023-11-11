@@ -1,7 +1,9 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import formatDate from "@/utils/formatDate";
+
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
@@ -21,13 +23,29 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-  <main class="post mx-auto flex w-full max-w-prose flex-col gap-4">
+  <main class="post mx-auto flex w-full flex-col gap-4">
     <header role="presentation">
-      <h1 class="text-md">
-        {post.data.title} - {formatDate(post.data.publishedAt)}
+      {
+        post.data.cover_image != "none" ? <Image 
+            src={post.data.cover_image}
+            class="w-full mx-auto align-center"
+            alt="cover image"
+            width='200'
+            height='200'
+          />
+          : null
+      }
+      <h1 class="text-3xl text-neutral-100">
+        {post.data.title}
       </h1>
-      <p class="italic">{post.data.description}</p>
+      <br>
+      <div class="grid grid-cols-8">
+        <p class="italic col-span-6">{post.data.description}</p>
+        <p class="italic">{formatDate(new Date(post.data.published_at))}</p>
+      </div>
     </header>
+
+    <hr>
 
     <Content />
   </main>

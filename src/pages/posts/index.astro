@@ -4,7 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import formatDate from "@/utils/formatDate";
 
 const posts = (await getCollection("posts")).sort(function (first, second) {
-  return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
+  return new Date(second.data.published_at).getTime() - new Date(first.data.published_at).getTime();
 });
 ---
 
@@ -23,7 +23,7 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
               <h2 class="text-lg">{post.data.title}</h2>
 
               <div class="flex flex-row items-center gap-4">
-                <p>{formatDate(post.data.publishedAt)}</p>
+                <p>{formatDate(post.data.published_at)}</p>
                 <svg
                   width="18"
                   height="18"
